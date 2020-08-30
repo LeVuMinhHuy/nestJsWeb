@@ -1,0 +1,49 @@
+<!-- Top menu -->
+<div class="w3-top">
+    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+      <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+      <div class="w3-center w3-padding-16">Huy Le</div>
+    </div>
+</div>
+
+<div class="w3-main w3-content w3-padding" style="max-width: 1000px;margin-top:40px">
+    <div class="w3-row-padding w3-padding-16 w3-center">
+        <div class="w3-quarter"  *ngFor="let user of users">
+          <img [src]="user.avatar" style="width:150px;height:150px;">
+          <h3>{{user.firstName}} {{user.lastName}}</h3>
+          <p>{{user.email}}</p>
+          <button type="button" class="w3-button w3-white w3-border w3-border-red w3-round-large" (click)="delete(user)">Remove</button>
+          <a href="#form"><button class="w3-button w3-white w3-border w3-border-red w3-round-large" (click)="getUserUpdate(user)">Update</button></a>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <form [formGroup]="userForm" novalidate class="w3-center" id="form">
+        <div class="form-group">
+            <label>Id</label><br>
+            <input disabled type="text" formControlName="id" class="form-control" maxlength="40">
+          </div>
+        <div class="form-group">
+            <label>Email</label><br>
+            <input type="text" formControlName="email" class="form-control" maxlength="40">
+        </div>
+        <div class="form-group">
+            <label>First Name</label><br>
+            <input type="text" formControlName="firstName" class="form-control" maxlength="20">
+        </div>
+        <div class="form-group">
+            <label>Last Name</label><br>
+            <input type="text" formControlName="lastName" class="form-control" maxlength="20">
+        </div>
+        <div class="form-group">
+            <label>Avatar</label><br>
+            <input type="text" formControlName="avatar" class="form-control" maxlength="100">
+        </div>
+
+       <button type="submit" [disabled] = "stateButton" (click)="checkSubmit(this.userForm.value)">Submit</button>
+       <button type="submit" (click)="newForm()">Cancel</button>
+    </form>
+</div>
+
